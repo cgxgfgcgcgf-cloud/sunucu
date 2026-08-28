@@ -1,18 +1,16 @@
-// Botun sürekli ileri koşmasını ve bağlantıda kalmasını sağlayan güncel döngü
+// Bot her doğduğunda veya sunucuya katıldığında tetiklenir
 bot.on('spawn', () => {
-    console.log('Bot oyuna girdi, koşu başlatılıyor...');
+    console.log('Bot koşturma modu aktif!');
     
-    // Sürekli ileri ve koşma (sprint) tuşunu basılı tut
+    // Sürekli ileri ve sprint tuşlarını basılı tut
     bot.setControlState('forward', true);
     bot.setControlState('sprint', true);
 });
 
-// Eğer bot bir şekilde durursa veya engelle karşılaşırsa tekrar koşuyu tetikle
-bot.on('physicsTick', () => {
-    if (!bot.getControlState('forward')) {
+// Her saniye botun koştuğundan emin olmak için kontrol döngüsü
+setInterval(() => {
+    if (bot.entity) {
         bot.setControlState('forward', true);
-    }
-    if (!bot.getControlState('sprint')) {
         bot.setControlState('sprint', true);
     }
-});
+}, 1000);
