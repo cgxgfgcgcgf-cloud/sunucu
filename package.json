@@ -1,0 +1,12 @@
+{
+  "name": "minecraft-afk-bots",
+  "version": "1.0.0",
+  "description": "7/24 AFK Bots",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "mineflayer": "^4.20.0"
+  }
+}
