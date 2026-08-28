@@ -15,7 +15,7 @@ function createBot(username) {
     host: 'dynamic-9.magmanode.com',
     port: 25692,
     username: username,
-    version: '1.26.2', // Sunucu sürümün
+    version: '1.20.5', // Sunucu sürümün
     checkTimeoutInterval: 60000
   })
 
