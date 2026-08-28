@@ -1,13 +1,18 @@
-const http = require('http');
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Botlar aktif ve calisiyor!\n');
+// Botun sürekli ileri koşmasını ve bağlantıda kalmasını sağlayan güncel döngü
+bot.on('spawn', () => {
+    console.log('Bot oyuna girdi, koşu başlatılıyor...');
+    
+    // Sürekli ileri ve koşma (sprint) tuşunu basılı tut
+    bot.setControlState('forward', true);
+    bot.setControlState('sprint', true);
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Web sunucusu ${PORT} portunda calisiyor.`);
+// Eğer bot bir şekilde durursa veya engelle karşılaşırsa tekrar koşuyu tetikle
+bot.on('physicsTick', () => {
+    if (!bot.getControlState('forward')) {
+        bot.setControlState('forward', true);
+    }
+    if (!bot.getControlState('sprint')) {
+        bot.setControlState('sprint', true);
+    }
 });
-
-// Yukarıdaki bot kodunu buraya dahil ediyoruz
-require('./index.js');
